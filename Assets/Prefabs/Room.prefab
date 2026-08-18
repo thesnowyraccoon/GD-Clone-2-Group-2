@@ -1339,8 +1339,9 @@ GameObject:
   - component: {fileID: 8444066444408717195}
   - component: {fileID: 1227543479976356142}
   - component: {fileID: 124776449167640223}
-  - component: {fileID: 2434897663022890120}
-  - component: {fileID: 5140001331844876721}
+  - component: {fileID: 3309569406012427047}
+  - component: {fileID: 5461386690823659118}
+  - component: {fileID: 1904516126876361761}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Interactable
@@ -1420,7 +1421,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2434897663022890120
+--- !u!65 &3309569406012427047
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1439,9 +1440,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 285.63766, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 17.041742, z: -0.00000011897179}
---- !u!54 &5140001331844876721
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &5461386690823659118
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1463,11 +1464,23 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1904516126876361761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919748820401862498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971e761c9f102214d8948ffa5abb8e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonInteraction
 --- !u!1 &6973538413290371603
 GameObject:
   m_ObjectHideFlags: 0
