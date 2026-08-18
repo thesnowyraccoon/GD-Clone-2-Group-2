@@ -149,9 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
   size: {x: 3, y: 3}
-  offset: {x: 6, y: 6}
+  offset: {x: 26, y: 22}
   startPos: 0
-  room: {fileID: 6872875017972341578, guid: 2943b1787c398d4439ffda9af9916bc1, type: 3}
+  rooms:
+  - {fileID: 6872875017972341578, guid: 2943b1787c398d4439ffda9af9916bc1, type: 3}
+  - {fileID: 6872875017972341578, guid: 27e09cb3a63a28140bb532fc2d907a00, type: 3}
 --- !u!4 &82672800
 Transform:
   m_ObjectHideFlags: 0

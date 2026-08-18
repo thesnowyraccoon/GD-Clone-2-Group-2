@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
@@ -13,7 +12,7 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2 size;
     public Vector2 offset;
     public int startPos = 0;
-    public GameObject room;
+    public GameObject[] rooms;
 
     List<Cell> board;
 
@@ -28,10 +27,15 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
-                var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomController>();
-                newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+                Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
 
-                newRoom.name += " " + i + "-" + j;
+                if (currentCell.visited)
+                {
+                    var newRoom = Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomController>();
+                    newRoom.UpdateRoom(currentCell.status);
+
+                    newRoom.name += " " + i + "-" + j;
+                }
             }
         }
     }
@@ -59,6 +63,11 @@ public class DungeonGenerator : MonoBehaviour
             k++;
 
             board[currentCell].visited = true;
+
+            if (currentCell == board.Count - 1)
+            {
+                break;
+            }
 
             // Check cell's neighbours
             List<int> neighbours = CheckNeighbours(currentCell);
