@@ -148,12 +148,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55606cbf2247cb74bac3b1ac8b99effc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
-  size: {x: 4, y: 4}
-  offset: {x: 26, y: 22}
+  size: {x: 3, y: 3}
+  offset: {x: 30, y: 30}
   startPos: 0
   rooms:
-  - {fileID: 6872875017972341578, guid: 2943b1787c398d4439ffda9af9916bc1, type: 3}
-  - {fileID: 6872875017972341578, guid: 27e09cb3a63a28140bb532fc2d907a00, type: 3}
+  - room: {fileID: 7017850152895561395, guid: b62b898ff26bfad42876464c07f47360, type: 3}
+    minPos: {x: 0, y: 0}
+    maxPos: {x: 0, y: 0}
+    obligatory: 1
+  - room: {fileID: 1265117518223443122, guid: 2943b1787c398d4439ffda9af9916bc1, type: 3}
+    minPos: {x: 0, y: 0}
+    maxPos: {x: 3, y: 3}
+    obligatory: 0
+  - room: {fileID: 3557681954974600128, guid: 9a7d1f336246b9245aa480e9639891c4, type: 3}
+    minPos: {x: 0, y: 0}
+    maxPos: {x: 3, y: 3}
+    obligatory: 0
+  - room: {fileID: 8204742630652076705, guid: a2aa9ed47c231af4cad5483dd30f227d, type: 3}
+    minPos: {x: 0, y: 0}
+    maxPos: {x: 3, y: 3}
+    obligatory: 0
+  - room: {fileID: 7538973121587884942, guid: 876beea9372acb743b4ffc5c2c373f42, type: 3}
+    minPos: {x: 2, y: 2}
+    maxPos: {x: 3, y: 3}
+    obligatory: 1
 --- !u!4 &82672800
 Transform:
   m_ObjectHideFlags: 0
@@ -161,6 +179,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82672798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &288808082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288808083}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &288808083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288808082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1028,3 +1077,4 @@ SceneRoots:
   - {fileID: 490165123}
   - {fileID: 443080082}
   - {fileID: 82672800}
+  - {fileID: 288808083}

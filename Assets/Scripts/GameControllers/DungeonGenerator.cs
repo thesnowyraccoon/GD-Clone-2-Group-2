@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
@@ -9,10 +10,32 @@ public class DungeonGenerator : MonoBehaviour
         public bool[] status = new bool[4];     // directions from room
     }
 
-    public Vector2 size;
+    [System.Serializable]
+    public class Rule
+    {
+        public GameObject room;
+        public Vector2Int minPos;
+        public Vector2Int maxPos;
+
+        public bool obligatory;
+
+        public int ProbabilityOfSpawning(int x, int y)
+        {
+            // 0 - cannot spawn, 1 - can spawn, 2 - has to spawn
+
+            if (x >= minPos.x && x <= maxPos.x && y >= minPos.y && y <= maxPos.y)
+            {
+                return obligatory ? 2 : 1;
+            }
+
+            return 0;
+        }
+    }
+
+    public Vector2Int size;
     public Vector2 offset;
     public int startPos = 0;
-    public GameObject[] rooms;
+    public Rule[] rooms;
 
     List<Cell> board;
 
@@ -31,7 +54,38 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (currentCell.visited)
                 {
-                    var newRoom = Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomController>();
+                    int randomRoom = -1;
+
+                    List<int> availableRooms = new List<int>();
+
+                    for (int k = 0; k < rooms.Length; k++)
+                    {
+                        int p = rooms[k].ProbabilityOfSpawning(i, j);
+
+                        if (p == 2)
+                        {
+                            randomRoom = k;
+                            break;
+                        }
+                        else if (p == 1)
+                        {
+                            availableRooms.Add(k);
+                        }
+                    }
+
+                    if (randomRoom == -1)
+                    {
+                        if (availableRooms.Count > 0)
+                        {
+                            randomRoom = availableRooms[Random.Range(0, availableRooms.Count)];
+                        }
+                        else
+                        {
+                            randomRoom = 0;
+                        }
+                    }
+
+                    var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomController>();
                     newRoom.UpdateRoom(currentCell.status);
 
                     newRoom.name += " " + i + "-" + j;
@@ -132,27 +186,27 @@ public class DungeonGenerator : MonoBehaviour
         List<int> neighbours = new List<int>();
 
         // check north neighbour
-        if (cell - size.x >= 0 && !board[Mathf.FloorToInt(cell - size.x)].visited)
+        if (cell - size.x >= 0 && !board[cell - size.x].visited)
         {
-            neighbours.Add(Mathf.FloorToInt(cell - size.x));
+            neighbours.Add(cell - size.x);
         }
 
         // check east neighbour
-        if (cell + size.x < board.Count && !board[Mathf.FloorToInt(cell + size.x)].visited)
+        if (cell + size.x < board.Count && !board[cell + size.x].visited)
         {
-            neighbours.Add(Mathf.FloorToInt(cell + size.x));
+            neighbours.Add(cell + size.x);
         }
 
         // check south neighbour
-        if ((cell + 1) % size.x != 0 && !board[Mathf.FloorToInt(cell + 1)].visited)
+        if ((cell + 1) % size.x != 0 && !board[cell + 1].visited)
         {
-            neighbours.Add(Mathf.FloorToInt(cell + 1));
+            neighbours.Add(cell + 1);
         }
 
         // check west neighbour
-        if (cell % size.x != 0 && !board[Mathf.FloorToInt(cell - 1)].visited)
+        if (cell % size.x != 0 && !board[cell - 1].visited)
         {
-            neighbours.Add(Mathf.FloorToInt(cell - 1));
+            neighbours.Add(cell - 1);
         }
 
         return neighbours;
