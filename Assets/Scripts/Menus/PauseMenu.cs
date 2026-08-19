@@ -30,6 +30,7 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = isPaused ? 0f : 1f;
 
+        // Optional: unlock cursor while paused, relock when resuming
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isPaused;
     }

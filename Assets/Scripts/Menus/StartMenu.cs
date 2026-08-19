@@ -5,7 +5,7 @@ public class StartMenu : MonoBehaviour
 {
     [Header("Scene to load on Play")]
     [Tooltip("Must be added to File > Build Settings > Scenes In Build")]
-    public string gameSceneName = "MainGame";
+    public string gameSceneName = "Level";
 
     [Header("Optional Panels")]
     public GameObject mainPanel;     // Play / Options / Quit buttons
@@ -24,7 +24,7 @@ public class StartMenu : MonoBehaviour
     // Hook this up to your "Play" button's OnClick
     public void PlayGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(1);
     }
 
     // Hook this up to your "Options" button's OnClick
